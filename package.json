@@ -18,8 +18,11 @@
   },
   "homepage": "https://github.com/daisy-electronics/daisy-frontend#readme",
   "dependencies": {
+    "@kothique/request-target": "^2.5.0",
     "axios": "^0.18.0",
     "core-js": "^2.6.5",
+    "events": "^3.0.0",
+    "socket.io-client": "^2.2.0",
     "vue": "^2.6.6",
     "vue-router": "^3.0.1",
     "vuex": "^3.0.1"
