@@ -1,5 +1,7 @@
 import * as ws from '../ws';
 
+const subscriptions = {};
+
 export default {
   namespaced: true,
   state: {
@@ -61,6 +63,38 @@ export default {
       ws.emit('deauthenticate');
       context.commit('deauthenticate');
       console.log(`WS: user deauthenticated.`);
+    },
+    subscribe(context, { paths }) {
+      paths = paths.filter(path => {
+        if (subscriptions[path]) {
+          subscriptions[path]++;
+          return false;
+        } else {
+          subscriptions[path] = 1;
+          return true;
+        }
+      });
+      if (paths.length > 0) {
+        console.debug(`WS: subscribing to ${paths.join(', ')}.`);
+        return ws.request('subscribe', { paths });
+      }
+    },
+    unsubscribe(context, { paths }) {
+      paths = paths.filter(path => {
+        if (subscriptions[path]) {
+          subscriptions[path]--;
+          if (subscriptions[path] === 0) {
+            delete subscriptions[path];
+            return true;
+          }
+        }
+
+        return false;
+      });
+      if (paths.length > 0) {
+        console.debug(`WS: unsubscribing from ${paths.join(', ')}.`);
+        return ws.request('unsubscribe', { paths });
+      }
     }
   }
 };
