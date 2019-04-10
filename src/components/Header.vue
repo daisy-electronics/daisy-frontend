@@ -10,17 +10,15 @@
       <div class="item username">
         {{ username }}
       </div>
-      <!-- <button class="item button" @click="$store.dispatch('browserSettings/toggleMedia')">
+      <!-- <Button class="item" @click="$store.dispatch('browserSettings/toggleMedia')">
 
-      </button> -->
-      <button class="item button" @click="$store.dispatch('auth/logout')">
-        Logout
-      </button>
+      </Button> -->
+      <Button class="item" @click="$store.dispatch('auth/logout')">
+        logout
+      </Button>
     </template>
     <template v-else>
-      <button class="item button" @click="$router.push('/login')">
-        Login
-      </button>
+      <Button class="item" navigateTo="/login">login</Button>
     </template>
   </header>
 </template>
@@ -45,14 +43,15 @@ export default {
   display flex
   align-items center
   justify-content space-between
-  padding 0 $padding
-  height $header-height
+  padding $padding * 2
+  // height $header-height
 
-  .item
-    margin 0 $padding
+  .item:not(:last-child)
+    margin-right $padding * 2
 
   .brand-name
     font-weight 600
+    font-family $font-family-header
     font-size 1.5rem
 
   .spacer

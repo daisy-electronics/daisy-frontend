@@ -4,9 +4,13 @@ import router from './router';
 import store from './store';
 import * as ws from './ws';
 
+import Button from './components/base/Button';
+
 ws.connect();
 
 Vue.config.productionTip = false;
+
+Vue.component('Button', Button);
 
 new Vue({
   router,

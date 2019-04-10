@@ -1,6 +1,7 @@
 <template>
   <div id="app">
     <Header />
+    <div class="separator" />
     <main class="content">
       <router-view />
     </main>
@@ -18,7 +19,7 @@ export default {
 </script>
 
 <style lang="stylus">
-html, body {
+html, body
   font-family $font-family
   -webkit-font-smoothing antialiased
   -moz-osx-font-smoothing grayscale
@@ -26,5 +27,17 @@ html, body {
   padding 0
   margin 0
   background-color $color-primary
-}
+
+#app
+  display flex
+  margin 0 auto
+  flex-direction column
+  max-width $max-width
+
+.separator
+  width 95%
+  background-color $color-light
+  height 1px
+  opacity 0.7
+  align-self center
 </style>
