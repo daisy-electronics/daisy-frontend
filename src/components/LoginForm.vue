@@ -44,14 +44,12 @@ export default {
 };
 </script>
 
-<style lang="scss">
-.login-form {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
+<style lang="stylus">
+.login-form
+  display flex
+  flex-direction column
+  align-items center
 
-  input {
-    width: 100%;
-  }
-}
+  input
+    width 100%
 </style>

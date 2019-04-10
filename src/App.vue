@@ -1,35 +1,30 @@
 <template>
   <div id="app">
-    <LoginForm />
-    <button @click="subscribe">Subscribe</button>
-    <button @click="unsubscribe">Unsubscribe</button>
+    <Header />
+    <main class="content">
+      <router-view />
+    </main>
   </div>
 </template>
 
 <script>
-import LoginForm from './components/LoginForm';
+import Header from './components/Header';
 
 export default {
   components: {
-    LoginForm
-  },
-  methods: {
-    subscribe() {
-      this.$store.dispatch('ws/subscribe', { paths: ['temp0/humidity'] });
-    },
-    unsubscribe() {
-      this.$store.dispatch('ws/unsubscribe', { paths: ['temp0/humidity'] });
-    }
+    Header
   }
 };
 </script>
 
-<style lang="scss">
-#app {
-  font-family: 'Avenir', Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
+<style lang="stylus">
+html, body {
+  font-family $font-family
+  -webkit-font-smoothing antialiased
+  -moz-osx-font-smoothing grayscale
+  color $text-color
+  padding 0
+  margin 0
+  background-color $color-primary
 }
 </style>

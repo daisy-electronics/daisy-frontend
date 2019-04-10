@@ -23,6 +23,9 @@
     "core-js": "^2.6.5",
     "events": "^3.0.0",
     "socket.io-client": "^2.2.0",
+    "style-resources-loader": "^1.2.1",
+    "stylus": "^0.54.5",
+    "stylus-loader": "^3.0.2",
     "vue": "^2.6.6",
     "vue-router": "^3.0.1",
     "vuex": "^3.0.1"
@@ -36,7 +39,6 @@
     "eslint-plugin-vue": "^5.0.0",
     "lint-staged": "^8.1.4",
     "node-sass": "^4.9.0",
-    "sass-loader": "^7.1.0",
     "vue-template-compiler": "^2.5.21"
   },
   "gitHooks": {
