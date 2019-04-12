@@ -14,7 +14,6 @@ export default {
 
 <style lang="stylus">
 .input
-  color #333
   width 100%
   box-sizing border-box
   border 0
@@ -22,12 +21,12 @@ export default {
   border 1px solid #ccc
   position relative
   background $color-bg
-  transition 0.5s
+  transition background border
   border-radius $border-radius
   outline 0
 
 .input:focus
   background alpha($color-light, 0.05)
-  transition 0.5s
+  transition $animation-duration
   border-color $color-primary
 </style>

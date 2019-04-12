@@ -23,7 +23,7 @@ export default {
 <style lang="stylus">
 .button
   display inline-block
-  padding $padding $padding * 2.5
+  padding $gap $gap * 2.5
   border 1px solid $color-primary
   color $color-primary
   background-color $color-bg

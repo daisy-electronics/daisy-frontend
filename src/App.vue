@@ -25,12 +25,14 @@ html, body
   -moz-osx-font-smoothing grayscale
   color $text-color
   background-color $color-bg
+  height 100%
 
 #app
   display flex
   margin 0 auto
   flex-direction column
   max-width $max-width
+  height 100%
 
 .separator
   width 95%
@@ -38,4 +40,8 @@ html, body
   height 1px
   opacity 0.7
   align-self center
+
+.content
+  flex-grow 1
+  position relative
 </style>

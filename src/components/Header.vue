@@ -43,11 +43,11 @@ export default {
   display flex
   align-items center
   justify-content space-between
-  padding $padding * 2
+  padding $gap * 2
   // height $header-height
 
   .item:not(:last-child)
-    margin-right $padding * 2
+    margin-right $gap * 2
 
   .brand-name
     font-weight 600

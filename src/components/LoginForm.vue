@@ -1,18 +1,16 @@
 <template>
-  <form class="login-form">
-    <Field autocomplete="username" v-model="username" />
-    <Field password autocomplete="password" v-model="password" />
-    <Button @click="onLogin">Authenticate</Button>
-    <Button @click="onLogout">Deauthenticate</Button>
+  <form class="login-form" @submit="onLogin" action="#">
+    <Field class="control" autofocus autocomplete="username" v-model="username" />
+    <Field class="control" password autocomplete="password" v-model="password" />
+    <Button class="control" type="submit">Authenticate</Button>
 
-    <div v-if="error">{{ error.message }}</div>
-    <big>{{ isAuthenticated ? 'authenticated' : 'guest' }}</big>
+    <div class="error" :style="{ visibility: error ? 'visible' : 'hidden' }">
+      {{ error && error.message }}
+    </div>
   </form>
 </template>
 
 <script>
-import { mapGetters } from 'vuex';
-
 export default {
   data: () => ({
     username: '',
@@ -27,19 +25,11 @@ export default {
           password: this.password
         });
         this.error = null;
+        this.navigateAway();
       } catch (error) {
         this.error = error;
       }
-    },
-    async onLogout() {
-      this.$store.dispatch('auth/logout');
-      this.error = null;
     }
-  },
-  computed: {
-    ...mapGetters({
-      isAuthenticated: 'auth/isAuthenticated'
-    })
   }
 };
 </script>
@@ -50,6 +40,9 @@ export default {
   flex-direction column
   align-items center
 
-  input
-    width 100%
+  .control
+    margin-bottom $gap
+
+  .error
+    height 1ex
 </style>
