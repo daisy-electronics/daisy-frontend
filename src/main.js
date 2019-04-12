@@ -5,12 +5,14 @@ import store from './store';
 import * as ws from './ws';
 
 import Button from './components/base/Button';
+import Field from './components/base/Field';
 
 ws.connect();
 
 Vue.config.productionTip = false;
 
 Vue.component('Button', Button);
+Vue.component('Field', Field);
 
 new Vue({
   router,

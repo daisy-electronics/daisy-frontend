@@ -1,9 +1,9 @@
 <template>
   <form class="login-form">
-    <input type="text" autocomplete="username" v-model="username" />
-    <input type="password" autocomplete="password" v-model="password" />
-    <button type="button" @click="onLogin">Authenticate</button>
-    <button type="button" @click="onLogout">Deauthenticate</button>
+    <Field autocomplete="username" v-model="username" />
+    <Field password autocomplete="password" v-model="password" />
+    <Button @click="onLogin">Authenticate</Button>
+    <Button @click="onLogout">Deauthenticate</Button>
 
     <div v-if="error">{{ error.message }}</div>
     <big>{{ isAuthenticated ? 'authenticated' : 'guest' }}</big>

@@ -24,9 +24,7 @@ html, body
   -webkit-font-smoothing antialiased
   -moz-osx-font-smoothing grayscale
   color $text-color
-  padding 0
-  margin 0
-  background-color $color-primary
+  background-color $color-bg
 
 #app
   display flex

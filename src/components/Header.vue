@@ -53,6 +53,7 @@ export default {
     font-weight 600
     font-family $font-family-header
     font-size 1.5rem
+    color $color-primary
 
   .spacer
     flex-grow 1

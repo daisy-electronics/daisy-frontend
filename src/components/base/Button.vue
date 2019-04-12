@@ -24,8 +24,9 @@ export default {
 .button
   display inline-block
   padding $padding $padding * 2.5
-  border 1px solid $text-color
-  background-color $color-primary
+  border 1px solid $color-primary
+  color $color-primary
+  background-color $color-bg
   margin 0
   text-decoration none
   font-family $font-family
