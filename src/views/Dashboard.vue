@@ -1,11 +1,15 @@
 <template>
-  <div />
+  <PreviewsGrid />
 </template>
 
 <script>
 import { mapGetters } from 'vuex';
+import PreviewsGrid from '../components/PreviewsGrid';
 
 export default {
+  components: {
+    PreviewsGrid
+  },
   mounted() {
     if (!this.isAuthenticated) {
       this.$router.push('/login');

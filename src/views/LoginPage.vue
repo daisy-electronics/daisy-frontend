@@ -39,6 +39,7 @@ export default {
 
 <style lang="stylus">
 .login-page
+  // desktop
   @media screen and (min-width: 'calc(%s - 1px)' % $threshold-mobile)
     .form
       position absolute
@@ -46,6 +47,7 @@ export default {
       left 50%
       transform translate(-50%, -50%)
 
+  // mobile
   @media screen and (max-width: $threshold-mobile)
     .form
       position absolute

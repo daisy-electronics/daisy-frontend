@@ -42,6 +42,7 @@ html, body
   align-self center
 
 .content
+  display flex
   flex-grow 1
   position relative
 </style>

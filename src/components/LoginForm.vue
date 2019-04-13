@@ -1,5 +1,5 @@
 <template>
-  <form class="login-form" @submit="onLogin" action="#">
+  <form class="login-form" @submit.prevent="onLogin">
     <Field class="control" autofocus autocomplete="username" v-model="username" />
     <Field class="control" password autocomplete="password" v-model="password" />
     <Button class="control" type="submit">Authenticate</Button>
