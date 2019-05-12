@@ -35,13 +35,18 @@ export default {
       );
 
       /* Reauthenticate on reconnection. */
-      ws.events.on('$reconnected', () => {
+      ws.events.on('$reconnected', async () => {
         if (context.rootGetters['auth/isAuthenticated']) {
-          context.dispatch('authenticate', {
+          await context.dispatch('authenticate', {
             username: context.rootState.auth.username,
             accessToken: context.rootState.auth.accessToken
           });
         }
+
+        context.dispatch('subscribe', {
+          resubscription: true,
+          paths: Object.keys(subscriptions)
+        });
       });
 
       ws.requests.on('verify-access-token', () => context.rootState.auth.accessToken);
@@ -64,16 +69,18 @@ export default {
       context.commit('deauthenticate');
       console.log(`WS: user deauthenticated.`);
     },
-    subscribe(context, { paths }) {
-      paths = paths.filter(path => {
-        if (subscriptions[path]) {
-          subscriptions[path]++;
-          return false;
-        } else {
-          subscriptions[path] = 1;
-          return true;
-        }
-      });
+    subscribe(context, { paths, resubscription = false }) {
+      if (!resubscription) {
+        paths = paths.filter(path => {
+          if (subscriptions[path]) {
+            subscriptions[path]++;
+            return false;
+          } else {
+            subscriptions[path] = 1;
+            return true;
+          }
+        });
+      }
       if (paths.length > 0) {
         console.debug(`WS: subscribing to ${paths.join(', ')}.`);
         return ws.request('subscribe', { paths });
