@@ -1,17 +1,18 @@
 <template>
   <section class="previews-grid">
     <div class="grid">
-      <div class="preview">A</div>
-      <div class="preview">B</div>
-      <div class="preview">C</div>
-      <div class="preview">D</div>
+      <GardenPreview class="preview"></GardenPreview>
     </div>
   </section>
 </template>
 
 <script>
-export default {
+import GardenPreview from './GardenPreview';
 
+export default {
+  components: {
+    GardenPreview
+  }
 };
 </script>
 

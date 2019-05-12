@@ -6,6 +6,8 @@ const url = `http://${window.location.host}/app`;
 
 let socket = null;
 
+const queue = [];
+
 const eventHandlers = new EventListener;
 export { eventHandlers as events };
 
@@ -13,16 +15,36 @@ const requestHandlers = new RequestTarget;
 export { requestHandlers as requests };
 
 export function emit(subject, data = null) {
-  socket.emit('event', subject, data);
+  if (!socket || !socket.connected) {
+    queue.push({ type: 'emit', subject, data });
+  } else {
+    socket.emit('event', subject, data);
+  }
 }
 
 export function request(subject, data = null) {
   return new Promise((resolve, reject) => {
-    socket.emit('request', subject, ...data ? [data] : [], (err, response) => {
-      if (err) { return reject(err); }
-      resolve(response);
-    })
+    if (!socket || !socket.connected) {
+      queue.push({ type: 'request', subject, data, resolve, reject });
+    } else {
+      socket.emit('request', subject, ...data ? [data] : [], (err, response) => {
+        if (err) { return reject(err); }
+        resolve(response);
+      });
+    }
   });
+}
+
+function emptyQueue() {
+  while (queue.length > 0) {
+    const item = queue.shift();
+
+    if (item.type === 'emit') {
+      emit(item.subject, item.data);
+    } else if (item.type === 'request') {
+      request(item.subject, item.data).then(item.resolve, item.reject);
+    }
+  }
 }
 
 export function connect() {
@@ -42,6 +64,8 @@ export function connect() {
       eventHandlers.emit('$reconnected');
     }
     firstConnection = false;
+    
+    emptyQueue();
   });
 
   socket.on('disconnect', reason => {
