@@ -19,7 +19,7 @@
   "homepage": "https://github.com/daisy-electronics/daisy-frontend#readme",
   "dependencies": {
     "@kothique/request-target": "^2.5.0",
-    "axios": "^0.19.0",
+    "axios": "^0.21.1",
     "core-js": "^2.6.5",
     "events": "^3.0.0",
     "socket.io-client": "^2.2.0",
